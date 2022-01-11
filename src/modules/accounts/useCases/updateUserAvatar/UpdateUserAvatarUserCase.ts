@@ -4,7 +4,7 @@ import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
   user_id: string;
-  avatar_file: string;
+  avatarFile: string;
 }
 
 @injectable()
@@ -13,13 +13,13 @@ class UpdateUserAvatarUseCase {
     @inject("UsersRepository")
     private usersRepository: IUsersRepository
   ) {}
-  async execute({ user_id, avatar_file }: IRequest): Promise<void> {
+  async execute({ user_id, avatarFile }: IRequest): Promise<void> {
     const user = await this.usersRepository.findById(user_id);
 
     if (user.avatar) {
       await deleteFile(`./tmp/avatar/${user.avatar}`);
     }
-    user.avatar = avatar_file;
+    user.avatar = avatarFile;
     await this.usersRepository.create(user);
   }
 }
