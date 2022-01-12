@@ -9,6 +9,9 @@
 ## Executando o docker-compose
  - docker-compose up
 
+## Executando as migrations
+- yarn typeorm migrations:run
+
 ## Iniciando o projeto
 - docker-compose start
 
