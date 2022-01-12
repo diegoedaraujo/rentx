@@ -1,19 +1,19 @@
-> API responsável por fornecer os serviços de aluguel de carros
+# API responsável por fornecer os serviços de aluguel de carros
 
-# Clonar o projeto
+## Clonar o projeto
 - git clone https://github.com/diegoedaraujo/rentx.git
 
-# Realize a instalação das libs do package.json
+## Realize a instalação das libs do package.json
 - yarn install
 
-# Executando o docker-compose
+## Executando o docker-compose
  - docker-compose up
 
-# Iniciando o projeto
+## Iniciando o projeto
 - docker-compose start
 
-# Cadastro de carro
-## TODO
+## Cadastro de carro
+### TODO
 **RF**
 **RNF**
 **RN**
