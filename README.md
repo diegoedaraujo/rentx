@@ -4,7 +4,7 @@
 - git clone https://github.com/diegoedaraujo/rentx.git
 
 ## Realize a instalação das libs do package.json
-- yarn install
+- yarn
 
 ## Executando o docker-compose
  - docker-compose up
