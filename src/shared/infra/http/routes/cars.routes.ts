@@ -8,7 +8,6 @@ const carsRoutes = Router();
 const createCarController = new CreateCarController();
 const listAvailableCarsController = new ListAvailableCarsController();
 
-carsRoutes.use(ensureAuthenticated);
 carsRoutes.post(
   "/",
   ensureAuthenticated,
