@@ -5,8 +5,8 @@ import request from "supertest";
 import { Connection, createConnection } from "typeorm";
 
 let connection: Connection;
-describe("Create Category Controller", () => {
-  beforeAll(async () => {
+describe("List Categories Controller", () => {
+  beforeEach(async () => {
     connection = await createConnection();
     await connection.runMigrations();
     const password = await hash("admin", 8);
@@ -19,18 +19,18 @@ describe("Create Category Controller", () => {
     );
   });
 
-  afterAll(async () => {
+  afterEach(async () => {
     await connection.dropDatabase();
     await connection.close();
   });
 
-  it("Should be able to create a new category", async () => {
+  it("Should be able to list all categories", async () => {
     const responseToken = await request(app).post("/sessions").send({
       email: "admin@rentx.com.br",
       password: "admin",
     });
     const { token } = responseToken.body;
-    const response = await request(app)
+    await request(app)
       .post("/categories")
       .send({
         name: "Category Supertest",
@@ -39,23 +39,9 @@ describe("Create Category Controller", () => {
       .set({
         Authorization: `Bearer ${token}`,
       });
-    expect(response.status).toBe(201);
-  });
-  it("Should not be able to create a new category with name exists", async () => {
-    const responseToken = await request(app).post("/sessions").send({
-      email: "admin@rentx.com.br",
-      password: "admin",
-    });
-    const { token } = responseToken.body;
-    const response = await request(app)
-      .post("/categories")
-      .send({
-        name: "Category Supertest",
-        description: "Category Supertest",
-      })
-      .set({
-        Authorization: `Bearer ${token}`,
-      });
-    expect(response.status).toBe(400);
+    const response = await request(app).get("/categories");
+    console.log(response.body);
+    expect(response.status).toBe(200);
+    expect(response.body.length).toBe(1);
   });
 });
