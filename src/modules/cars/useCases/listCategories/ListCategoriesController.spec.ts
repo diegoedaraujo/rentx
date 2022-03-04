@@ -6,7 +6,7 @@ import { Connection, createConnection } from "typeorm";
 
 let connection: Connection;
 describe("List Categories Controller", () => {
-  beforeEach(async () => {
+  beforeAll(async () => {
     connection = await createConnection();
     await connection.runMigrations();
     const password = await hash("admin", 8);
@@ -19,7 +19,7 @@ describe("List Categories Controller", () => {
     );
   });
 
-  afterEach(async () => {
+  afterAll(async () => {
     await connection.dropDatabase();
     await connection.close();
   });
