@@ -57,10 +57,10 @@ describe("Create Rental", () => {
     ).rejects.toEqual(new AppError("There's a rental in progress for user!"));
   });
   it("Should not be able to create a new rental if there is another open to the same car", async () => {
-    await createRentalUseCase.execute({
-      user_id: "123",
+    await rentalRepositoryInMemory.create({
       car_id: "test",
       expected_return_date: dayAdd24Hours,
+      user_id: "12345",
     });
     await expect(
       createRentalUseCase.execute({
