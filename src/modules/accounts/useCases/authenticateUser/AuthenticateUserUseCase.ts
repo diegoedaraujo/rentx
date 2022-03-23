@@ -62,7 +62,15 @@ class AuthenticateUserUseCase {
       refresh_token,
       expires_date: refresh_token_expires_date,
     });
-    return { user, token, refresh_token };
+    const tokenReturn: IResponse = {
+      token,
+      user: {
+        name: user.name,
+        email: user.email,
+      },
+      refresh_token,
+    };
+    return tokenReturn;
   }
 }
 
